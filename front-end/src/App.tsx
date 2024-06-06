@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import {Helmet} from "react-helmet";
+import {useTranslation} from "react-i18next"
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const { t } = useTranslation();
+    return (
+        <>
+            <Helmet>
+                <title>{t('app.name')}</title>
+            </Helmet>
+            <div className="container mx-auto">
+                <nav className="bg-white flex justify-between items-center p-4 mt-2 border-b-2 border-b-black">
+                    <h1 className="text-2xl font-bold">
+                        {t('app.name')}
+                    </h1>
+                    <button className="px-4 py-2 bg-black text-white rounded font-bold hover:bg-gray-700">
+                        {t('new')}
+                    </button>
+                </nav>
+                <div className="container mx-auto flex flex-wrap">
+                    <div className="w-full md:w-1/2 p-4">
+                    </div>
+                    <div className="w-full md:w-1/2 p-4">
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default App
