@@ -40,10 +40,6 @@ these trips.
 #### Backend:
    • Symfony controllers for managing tasks, trips, drivers, and trucks.\
    • Database migrations (Fixtures) and seeders for initial data setup.
-   
-### Project Submission
-   • Provide access to the Git repository containing the project code.\
-   • Ensure that the project is well-documented with instructions on how to set it up and run it using Docker (if implemented).
 
 ### Visual Layout (Mockup)
 ![Visual Layout (Mockup)](./assets/images/mockup.png)
