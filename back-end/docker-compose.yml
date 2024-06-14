@@ -11,7 +11,7 @@ services:
     env_file:
       - .env
     environment:
-      DATABASE_URL: "postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}"
+      DATABASE_URL: "${DOCKER_DATABASE_URL}"
     networks:
       - symfony
     depends_on:

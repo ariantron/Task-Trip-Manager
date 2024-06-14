@@ -1,9 +1,18 @@
 #!/bin/sh
+# Exit immediately if a command exits with a non-zero status
 set -e
 
-# Install dependencies with Composer
+# Install PHP dependencies using Composer
 composer install
 
-# Start the built-in server using the Symfony CLI
-symfony server:start --port=8000
+# Create a new migration based on the current database schema
+php bin/console make:migration
 
+# Apply the migrations to the database
+php bin/console doctrine:migrations:migrate
+
+# Load data fixtures into the database
+php bin/console doctrine:fixtures:load
+
+# Start the PHP built-in web server
+php -S localhost:8000
