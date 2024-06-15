@@ -1,4 +1,11 @@
 {
-  "app.name": "Task-Trip Manager",
-  "new": "New"
+  "app-name": "Task-Trip Manager",
+  "new": "New",
+  "loading...": "Loading...",
+  "tasks": "Tasks",
+  "trips": "Trips",
+  "new-task": "New Task",
+  "new-trip": "New Trip",
+  "view": "View",
+  "assign-to-selected-trip": "Assign to Selected Trip"
 }

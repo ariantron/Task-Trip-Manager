@@ -13,8 +13,23 @@ class TruckFixtures extends Fixture
     {
         $faker = Factory::create();
 
-        for ($i = 0; $i < 10; $i++) {
+        $models = array(
+            "Ford F-150",
+            "Chevrolet Silverado",
+            "Ram 1500",
+            "Toyota Tundra",
+            "GMC Sierra",
+            "Nissan Titan",
+            "Honda Ridgeline",
+            "Jeep Gladiator",
+            "Ford F-250",
+            "GMC Canyon"
+        );
+
+        foreach ($models as $model) {
             $truck = new Truck();
+
+            $truck->setModel($model);
             $truck->setLicensePlate($faker->unique()->bothify('??###??'));
 
             $manager->persist($truck);

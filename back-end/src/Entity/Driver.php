@@ -13,7 +13,7 @@ class Driver extends Base
     private $name;
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName(): string
     {
@@ -21,7 +21,7 @@ class Driver extends Base
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
     public function setName(string $name): void
     {

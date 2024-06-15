@@ -10,6 +10,11 @@ use Symfony\Component\Uid\Ulid;
 #[ORM\MappedSuperclass]
 class Base
 {
+    public function __construct()
+    {
+        $this->id = new Ulid();
+    }
+
     #[ORM\Id]
     #[ORM\Column(type: 'ulid', unique: true)]
     public $id;
@@ -20,9 +25,46 @@ class Base
     #[ORM\Column(name: "updated_at", type: 'datetime')]
     public $updatedAt;
 
-    public function __construct()
+    public function getId(): Ulid
     {
-        $this->id = new Ulid();
+        return $this->id;
+    }
+
+    public function setId(Ulid $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getCreatedAt(): DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param DateTime $createdAt
+     */
+    public function setCreatedAt(DateTime $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getUpdatedAt(): DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param DateTime $updatedAt
+     */
+    public function setUpdatedAt(DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 
     #[ORM\PrePersist]

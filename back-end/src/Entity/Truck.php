@@ -9,11 +9,14 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: "trucks")]
 class Truck extends Base
 {
+    #[ORM\Column(type: 'string', length: 255)]
+    private $model;
+
     #[ORM\Column(name: 'license_plate', type: 'string', length: 50)]
     private $licensePlate;
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLicensePlate(): string
     {
@@ -21,10 +24,26 @@ class Truck extends Base
     }
 
     /**
-     * @param mixed $licensePlate
+     * @param string $licensePlate
      */
     public function setLicensePlate(string $licensePlate): void
     {
         $this->licensePlate = $licensePlate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getModel(): string
+    {
+        return $this->model;
+    }
+
+    /**
+     * @param string $model
+     */
+    public function setModel(string $model): void
+    {
+        $this->model = $model;
     }
 }

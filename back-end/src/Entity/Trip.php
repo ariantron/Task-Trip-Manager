@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: "trips")]
 class Trip extends Base
 {
+    #[ORM\Column(type: 'string', length: 255)]
+    private $name;
+
     #[ORM\ManyToOne(targetEntity: Driver::class)]
     #[ORM\JoinColumn(nullable: false)]
     private $driver;
@@ -16,6 +19,22 @@ class Trip extends Base
     #[ORM\ManyToOne(targetEntity: Truck::class)]
     #[ORM\JoinColumn(nullable: false)]
     private $truck;
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
 
     /**
      * @return mixed

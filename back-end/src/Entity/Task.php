@@ -15,8 +15,12 @@ class Task extends Base
     #[ORM\Column(type: 'text')]
     private $description;
 
+    #[ORM\ManyToOne(targetEntity: Trip::class, inversedBy: "tasks")]
+    #[ORM\JoinColumn(nullable: true)]
+    private $trip;
+
     /**
-     * @return mixed
+     * @return string
      */
     public function getTitle(): string
     {
@@ -24,7 +28,7 @@ class Task extends Base
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      */
     public function setTitle(string $title): void
     {
@@ -32,7 +36,7 @@ class Task extends Base
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDescription(): string
     {
@@ -40,10 +44,26 @@ class Task extends Base
     }
 
     /**
-     * @param mixed $description
+     * @param string $description
      */
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrip(): mixed
+    {
+        return $this->trip;
+    }
+
+    /**
+     * @param mixed $trip
+     */
+    public function setTrip(mixed $trip): void
+    {
+        $this->trip = $trip;
     }
 }
