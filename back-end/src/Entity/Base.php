@@ -27,9 +27,9 @@ class Base
     #[ORM\Column(name: "updated_at", type: 'datetime')]
     public $updatedAt;
 
-    public function getId(): Ulid
+    public function getId(): string
     {
-        return $this->id;
+        return $this->id->toRfc4122();
     }
 
     public function setId(Ulid $id): void

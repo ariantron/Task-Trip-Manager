@@ -36,7 +36,7 @@ class DriverController extends AbstractController
         $driver = $this->driverRepository->find($id);
 
         if (!$driver) {
-            throw $this->createNotFoundException('Driver not found');
+            throw $this->createNotFoundException('Driver not found!');
         }
 
         return $this->json($driver);

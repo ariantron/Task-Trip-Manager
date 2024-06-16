@@ -5,12 +5,13 @@ namespace App\Repository;
 use App\Entity\Trip;
 use App\RepositoryInterface\TripRepositoryInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Psr\Log\LoggerInterface;
 
 class TripRepository extends BaseRepository implements TripRepositoryInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, LoggerInterface $logger)
     {
-        parent::__construct($registry, Trip::class);
+        parent::__construct($registry, Trip::class, $logger);
     }
 
     public function create(string $name, object $driver, object $truck): Trip

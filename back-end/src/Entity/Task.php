@@ -58,6 +58,7 @@ class Task extends Base
     /**
      * @return mixed
      */
+
     public function getTrip(): mixed
     {
         return $this->trip;

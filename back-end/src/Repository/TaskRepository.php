@@ -6,12 +6,13 @@ use App\Entity\Task;
 use App\RepositoryInterface\TaskRepositoryInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 class TaskRepository extends BaseRepository implements TaskRepositoryInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, LoggerInterface $logger)
     {
-        parent::__construct($registry, Task::class);
+        parent::__construct($registry, Task::class, $logger);
     }
 
     public function assign(object $task, object $trip): void

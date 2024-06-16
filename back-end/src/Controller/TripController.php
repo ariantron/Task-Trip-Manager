@@ -51,7 +51,7 @@ class TripController extends AbstractController
         $trip = $this->tripRepository->find($id);
 
         if (!$trip) {
-            throw $this->createNotFoundException('Trip not found');
+            throw $this->createNotFoundException('Trip not found!');
         }
 
         return $this->json(
@@ -71,11 +71,11 @@ class TripController extends AbstractController
         $truck = $this->truckRepository->find($truckId);
 
         if (empty($name)) {
-            throw new Exception('Name cannot be empty');
+            throw new Exception('Name cannot be empty!');
         } elseif (is_null($driver)) {
-            throw new Exception('Driver not found');
+            throw new Exception('Driver not found!');
         } elseif (is_null($truck)) {
-            throw new Exception('Trip not found');
+            throw new Exception('Trip not found!');
         }
 
         $trip = $this->tripRepository->create($name, $driver, $truck);
@@ -84,6 +84,21 @@ class TripController extends AbstractController
             $trip,
             Response::HTTP_CREATED,
             context: [AbstractNormalizer::GROUPS => ['trip']]
+        );
+    }
+
+    #[Route('/trips/{id}/tasks', methods: ['GET'])]
+    public function tasks(string $id): Response
+    {
+        $trip = $this->tripRepository->find($id);
+
+        if (is_null($trip)) {
+            throw new Exception('Trip not found!');
+        }
+
+        return $this->json(
+            $trip->getTasks(),
+            context: [AbstractNormalizer::GROUPS => ['task']]
         );
     }
 }

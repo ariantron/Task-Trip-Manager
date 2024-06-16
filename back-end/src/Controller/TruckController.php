@@ -36,7 +36,7 @@ class TruckController extends AbstractController
         $truck = $this->truckRepository->find($id);
 
         if (!$truck) {
-            throw $this->createNotFoundException('Truck not found');
+            throw $this->createNotFoundException('Truck not found!');
         }
 
         return $this->json($truck);

@@ -46,7 +46,7 @@ class TaskController extends AbstractController
         $task = $this->taskRepository->find($id);
 
         if (!$task) {
-            throw $this->createNotFoundException('Task not found');
+            throw $this->createNotFoundException('Task not found!');
         }
 
         return $this->json(
@@ -62,14 +62,16 @@ class TaskController extends AbstractController
         $trip = $this->tripRepository->find($request->get('trip_id'));
 
         if (is_null($task)) {
-            throw new Exception('Task not found');
+            throw new Exception('Task not found!');
         } elseif (is_null($trip)) {
-            throw new Exception('Trip not found');
+            throw new Exception('Trip not found!');
         }
 
         $this->taskRepository->assign($task, $trip);
 
-        return $this->json(['message' => 'Task assigned to trip successfully']);
+        return $this->json(
+            ['message' => 'Task assigned to trip successfully!']
+        );
     }
 
     /**
@@ -82,13 +84,24 @@ class TaskController extends AbstractController
         $trip = $this->tripRepository->find($request->query->get('trip_id'));
 
         if (is_null($task)) {
-            throw new Exception('Task not found');
+            throw new Exception('Task not found!');
         } elseif (is_null($trip)) {
-            throw new Exception('Trip not found');
+            throw new Exception('Trip not found!');
         }
 
         $this->taskRepository->unassign($task, $trip);
 
-        return $this->json(['message' => 'Task unassigned from trip successfully']);
+        return $this->json(
+            ['message' => 'Task unassigned from trip successfully!']
+        );
+    }
+
+    #[Route('/tasks-no-trip', name: "no_trip_tasks", methods: ['GET'])]
+    public function indexWithoutTrip(): Response
+    {
+        return $this->json(
+            $this->taskRepository->findBy(['trip' => null]),
+            context: [AbstractNormalizer::GROUPS => ['task']]
+        );
     }
 }

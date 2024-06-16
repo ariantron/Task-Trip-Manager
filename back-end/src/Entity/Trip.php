@@ -77,10 +77,7 @@ class Trip extends Base
         $this->truck = $truck;
     }
 
-    /**
-     * @return ?Collection
-     */
-    public function getTasks(): ?Collection
+    public function getTasks()
     {
         return $this->tasks;
     }
