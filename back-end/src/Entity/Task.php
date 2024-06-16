@@ -4,19 +4,23 @@ namespace App\Entity;
 
 use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
 #[ORM\Table(name: "tasks")]
 class Task extends Base
 {
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(['trip', 'task'])]
     private $title;
 
     #[ORM\Column(type: 'text')]
+    #[Groups(['trip', 'task'])]
     private $description;
 
     #[ORM\ManyToOne(targetEntity: Trip::class, inversedBy: "tasks")]
     #[ORM\JoinColumn(nullable: true)]
+    #[Groups(['task'])]
     private $trip;
 
     /**

@@ -14,7 +14,7 @@ class TaskRepository extends BaseRepository implements TaskRepositoryInterface
         parent::__construct($registry, Task::class);
     }
 
-    public function assign($task, $trip): void
+    public function assign(object $task, object $trip): void
     {
         $task->setTrip($trip);
 
@@ -22,7 +22,7 @@ class TaskRepository extends BaseRepository implements TaskRepositoryInterface
         $this->getEntityManager()->flush();
     }
 
-    public function unassign($task, $trip): void
+    public function unassign(object $task, object $trip): void
     {
         if ($task->getTrip()->getId() != $trip->getId()) {
             throw new Exception('Task not found for trip ' . $trip->getId());

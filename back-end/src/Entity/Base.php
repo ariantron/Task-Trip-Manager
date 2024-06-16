@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Ulid;
 
 #[ORM\HasLifecycleCallbacks]
@@ -17,6 +18,7 @@ class Base
 
     #[ORM\Id]
     #[ORM\Column(type: 'ulid', unique: true)]
+    #[Groups(['trip', 'task', 'driver', 'truck'])]
     public $id;
 
     #[ORM\Column(name: "created_at", type: 'datetime')]

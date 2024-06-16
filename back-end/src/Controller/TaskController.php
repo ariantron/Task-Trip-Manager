@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
 class TaskController extends AbstractController
 {
@@ -34,7 +35,8 @@ class TaskController extends AbstractController
     public function index(Request $request): Response
     {
         return $this->json(
-            $this->taskRepository->findByQuery($request->query->all())
+            $this->taskRepository->findByQuery($request->query->all()),
+            context: [AbstractNormalizer::GROUPS => ['task']]
         );
     }
 
@@ -47,14 +49,17 @@ class TaskController extends AbstractController
             throw $this->createNotFoundException('Task not found');
         }
 
-        return $this->json($task);
+        return $this->json(
+            $task,
+            context: [AbstractNormalizer::GROUPS => ['task']]
+        );
     }
 
     #[Route('/tasks/assign', methods: ['POST'])]
     public function assign(Request $request): Response
     {
-        $task = $this->taskRepository->find($request->query->get('task_id'));
-        $trip = $this->tripRepository->find($request->query->get('trip_id'));
+        $task = $this->taskRepository->find($request->get('task_id'));
+        $trip = $this->tripRepository->find($request->get('trip_id'));
 
         if (is_null($task)) {
             throw new Exception('Task not found');
@@ -67,6 +72,9 @@ class TaskController extends AbstractController
         return $this->json(['message' => 'Task assigned to trip successfully']);
     }
 
+    /**
+     * @throws Exception
+     */
     #[Route('/tasks/unassign', methods: ['POST'])]
     public function unassign(Request $request): Response
     {

@@ -13,7 +13,7 @@ class TripRepository extends BaseRepository implements TripRepositoryInterface
         parent::__construct($registry, Trip::class);
     }
 
-    public function create($name, $driver, $truck): Trip
+    public function create(string $name, object $driver, object $truck): Trip
     {
         $trip = new Trip();
         $trip->setName($name);

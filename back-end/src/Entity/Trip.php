@@ -3,22 +3,31 @@
 namespace App\Entity;
 
 use App\Repository\TripRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TripRepository::class)]
 #[ORM\Table(name: "trips")]
 class Trip extends Base
 {
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(['trip', 'task'])]
     private $name;
 
     #[ORM\ManyToOne(targetEntity: Driver::class)]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['trip', 'task'])]
     private $driver;
 
     #[ORM\ManyToOne(targetEntity: Truck::class)]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['trip', 'task'])]
     private $truck;
+
+    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: "trip")]
+    #[Groups(['trip'])]
+    private $tasks;
 
     /**
      * @return string
@@ -66,6 +75,14 @@ class Trip extends Base
     public function setTruck(Truck $truck): void
     {
         $this->truck = $truck;
+    }
+
+    /**
+     * @return ?Collection
+     */
+    public function getTasks(): ?Collection
+    {
+        return $this->tasks;
     }
 }
 
