@@ -5,6 +5,9 @@ set -e
 # Install PHP dependencies using Composer
 composer install
 
+# Rolling up database migrations
+php bin/console doctrine:migrations:rollup
+
 # Create a new migration based on the current database schema
 php bin/console make:migration --no-interaction
 
