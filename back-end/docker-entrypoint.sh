@@ -15,4 +15,4 @@ php bin/console doctrine:migrations:migrate
 php bin/console doctrine:fixtures:load
 
 # Start the PHP built-in web server
-php -S localhost:8000 -t ./public
+php -S localhost:8005 -t ./public
