@@ -6,13 +6,13 @@ set -e
 composer install
 
 # Create a new migration based on the current database schema
-php bin/console make:migration
+php bin/console make:migration --no-interaction
 
 # Apply the migrations to the database
-php bin/console doctrine:migrations:migrate
+php bin/console doctrine:migrations:migrate --no-interaction
 
 # Load data fixtures into the database
-php bin/console doctrine:fixtures:load
+php bin/console doctrine:fixtures:load --no-interaction
 
 # Start the PHP built-in web server
 php -S localhost:8000 -t ./public
