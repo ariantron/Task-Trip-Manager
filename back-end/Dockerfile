@@ -24,9 +24,8 @@ COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 # Make the entrypoint script executable
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-# Expose port 8005
-EXPOSE 8005
+# Expose port 8000
+EXPOSE 8000
 
 # Use the entrypoint script
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-

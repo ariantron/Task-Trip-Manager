@@ -7,7 +7,7 @@ services:
       - .:/var/www/html
     working_dir: /var/www/html
     ports:
-      - "${APP_PORT}:8005"
+      - "${APP_PORT}:8000"
     env_file:
       - .env
     environment:
@@ -16,6 +16,12 @@ services:
       - symfony
     depends_on:
       - postgres
+    command: >
+      sh -c "
+      set -e &&
+      composer install &&
+      php -S 0.0.0.0:8000 -t ./public
+      "
 
   postgres:
     image: postgres:16.3
@@ -35,4 +41,3 @@ volumes:
 
 networks:
   symfony:
-
