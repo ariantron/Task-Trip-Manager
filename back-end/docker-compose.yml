@@ -16,15 +16,6 @@ services:
       - symfony
     depends_on:
       - postgres
-    command: >
-      sh -c "
-      set -e &&
-      composer install &&
-      php bin/console make:migration --no-interaction &&
-      php bin/console doctrine:migrations:migrate --no-interaction &&
-      php bin/console doctrine:fixtures:load --no-interaction &&
-      php -S 0.0.0.0:8000 -t ./public
-      "
 
   postgres:
     image: postgres:16.3
