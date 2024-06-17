@@ -1,21 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import OffCanvas from '../components/Offcanvas.tsx';
+import Task from "../types/Task.ts";
 
 interface TaskViewProps {
-    title: string;
-    description: string;
+    task: Task
+    isOpen: boolean;
+    onClose: () => void;
 }
 
-const TaskView: React.FC<TaskViewProps> = ({title, description}) => {
-    const [isOpen, setIsOpen] = useState(false);
-
+const TaskView: React.FC<TaskViewProps> = ({task, isOpen, onClose}) => {
     return (
-        <OffCanvas isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <OffCanvas isOpen={isOpen} onClose={onClose}>
             <h2 className="text-2xl font-bold mb-2 mt-2">
-                {title}
+                {task.title}
             </h2>
             <p>
-                {description}
+                {task.description}
             </p>
         </OffCanvas>
     );

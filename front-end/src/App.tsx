@@ -8,8 +8,8 @@ function App() {
         <div className="container mx-auto">
             <Header/>
             <div className="container mx-auto flex flex-wrap">
-                <Tasks/>
                 <Trips/>
+                <Tasks/>
             </div>
         </div>
     );

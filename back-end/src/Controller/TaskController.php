@@ -80,8 +80,8 @@ class TaskController extends AbstractController
     #[Route('/tasks/unassign', methods: ['POST'])]
     public function unassign(Request $request): Response
     {
-        $task = $this->taskRepository->find($request->query->get('task_id'));
-        $trip = $this->tripRepository->find($request->query->get('trip_id'));
+        $task = $this->taskRepository->find($request->get('task_id'));
+        $trip = $this->tripRepository->find($request->get('trip_id'));
 
         if (is_null($task)) {
             throw new Exception('Task not found!');

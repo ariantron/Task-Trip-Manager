@@ -27,11 +27,17 @@ class Base
     #[ORM\Column(name: "updated_at", type: 'datetime')]
     public $updatedAt;
 
-    public function getId(): string
+    /**
+     * @return Ulid
+     */
+    public function getId(): Ulid
     {
-        return $this->id->toRfc4122();
+        return $this->id;
     }
 
+    /**
+     * @param Ulid $id
+     */
     public function setId(Ulid $id): void
     {
         $this->id = $id;
