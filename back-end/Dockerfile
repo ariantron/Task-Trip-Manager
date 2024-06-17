@@ -18,5 +18,14 @@ WORKDIR /var/www/html
 # Copy existing application directory contents
 COPY . /var/www/html
 
+# Copy entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # Expose port 8000
 EXPOSE 8000
+
+# Use the entrypoint script
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
