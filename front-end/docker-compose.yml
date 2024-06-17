@@ -10,5 +10,5 @@ services:
 
 networks:
   default:
-    external:
-      name: react
+    network.name: react
+    external: true
