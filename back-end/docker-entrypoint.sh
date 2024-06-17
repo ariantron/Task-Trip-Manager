@@ -6,7 +6,7 @@ set -e
 composer install
 
 # Rolling up database migrations
-php bin/console doctrine:migrations:rollup
+php bin/console doctrine:migrations:rollup --no-interaction
 
 # Create a new migration based on the current database schema
 php bin/console make:migration --no-interaction
