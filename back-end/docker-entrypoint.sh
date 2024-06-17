@@ -6,4 +6,4 @@ set -e
 composer install
 
 # Start the PHP built-in web server
-php -S localhost:8005 -t ./public
+php -S 0.0.0.0:8005 -t ./public
