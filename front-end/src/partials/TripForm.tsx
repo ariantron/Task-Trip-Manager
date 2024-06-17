@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import OffCanvas from '../components/Offcanvas';
 import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch} from "../redux/AppStore.ts";
+import {AppDispatch, RootState} from "../redux/AppStore.ts";
 import {fetchDrivers} from "../redux/DriverStore.ts";
 import {fetchTrucks} from "../redux/TruckStore.ts";
 import axios from 'axios';
@@ -15,8 +15,8 @@ interface TripFormProps {
 
 const TripForm: React.FC<TripFormProps> = ({isOpen, onClose}) => {
     const dispatch = useDispatch<AppDispatch>();
-    const trucks = useSelector((state) => state.trucks.trucks);
-    const drivers = useSelector((state) => state.drivers.drivers);
+    const trucks = useSelector((state: RootState) => state.trucks.trucks);
+    const drivers = useSelector((state: RootState) => state.drivers.drivers);
 
     const [tripName, setTripName] = useState('');
     const [selectedDriver, setSelectedDriver] = useState('');

@@ -4,8 +4,6 @@ import {tasksSlice} from "./TaskStore.ts";
 import {trucksSlice} from "./TruckStore.ts";
 import {driversSlice} from "./DriverStore.ts";
 
-export const BASE_URL = 'http://localhost:8000';
-
 const reducer = {
     trips: tripsSlice.reducer,
     tasks: tasksSlice.reducer,
@@ -18,5 +16,7 @@ const AppStore = configureStore({
 });
 
 export type AppDispatch = typeof AppStore.dispatch;
+
+export type RootState = ReturnType<typeof AppStore.getState>;
 
 export default AppStore;

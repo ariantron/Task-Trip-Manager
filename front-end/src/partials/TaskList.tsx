@@ -8,7 +8,7 @@ import FetchStatus from "../enums/FetchStatus.ts";
 import axios from "axios";
 import Constants from "../enums/Constants.ts";
 import {fetchTasks} from "../redux/TaskStore.ts";
-import {AppDispatch} from "../redux/AppStore.ts";
+import {AppDispatch, RootState} from "../redux/AppStore.ts";
 import {fetchTrips} from "../redux/TripStore.ts";
 
 interface TaskListProps {
@@ -19,11 +19,11 @@ interface TaskListProps {
 const TaskList: React.FC<TaskListProps> = ({tasks, section}) => {
     const {t} = useTranslation();
     const [selectedTask, setSelectedTask] = useState<Task | null>(null);
-    const tasksIsLoading = useSelector((state) => state.tasks.status === FetchStatus.LOADING);
-    const tripsIsLoading = useSelector((state) => state.trips.status === FetchStatus.LOADING);
+    const tasksIsLoading = useSelector((state: RootState) => state.tasks.status === FetchStatus.LOADING);
+    const tripsIsLoading = useSelector((state: RootState) => state.trips.status === FetchStatus.LOADING);
     const dispatch = useDispatch<AppDispatch>();
-    const trips = useSelector((state) => state.trips.trips);
-    const selectedTrip = useSelector((state) => state.trips.selectedTrip);
+    const trips = useSelector((state: RootState) => state.trips.trips);
+    const selectedTrip = useSelector((state: RootState) => state.trips.selectedTrip);
 
     const handleViewClick = (task: Task) => {
         setSelectedTask(task);
@@ -53,7 +53,7 @@ const TaskList: React.FC<TaskListProps> = ({tasks, section}) => {
                 'Accept': 'application/json'
             }
         })
-            .then(response => {
+            .then(() => {
                 dispatch(fetchTasks());
                 dispatch(fetchTrips());
             })
@@ -67,6 +67,7 @@ const TaskList: React.FC<TaskListProps> = ({tasks, section}) => {
             <ul className="list mt-2">
                 {tasks.map((task: Task) => (
                     <TaskItem
+                        key={task.id}
                         task={task}
                         section={section}
                         onViewClick={() => handleViewClick(task)}

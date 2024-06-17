@@ -3,10 +3,10 @@ import TaskList from "./TaskList.tsx";
 import TasksHeader from "./TasksHeader.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTasks} from "../redux/TaskStore.ts";
-import {AppDispatch} from "../redux/AppStore.ts";
+import {AppDispatch, RootState} from "../redux/AppStore.ts";
 
 const Tasks: React.FC = () => {
-    const tasks = useSelector((state) => state.tasks.tasks);
+    const tasks = useSelector((state: RootState) => state.tasks.tasks);
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {

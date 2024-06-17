@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import ScrollMenu from '../components/ScrollMenu';
-import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import {useTranslation} from 'react-i18next';
+import {useDispatch, useSelector} from 'react-redux';
 import Trip from '../types/Trip.ts';
 import FetchStatus from "../enums/FetchStatus.ts";
 import {fetchTrips, setSelectedTrip} from "../redux/TripStore.ts";
-import {AppDispatch} from "../redux/AppStore.ts";
+import {AppDispatch, RootState} from "../redux/AppStore.ts";
 
 const TripsScrollMenu: React.FC = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
-    const trips = useSelector((state) => state.trips.trips);
-    const isLoading = useSelector((state) => state.trips.status === FetchStatus.LOADING);
+    const trips = useSelector((state: RootState) => state.trips.trips);
+    const isLoading = useSelector((state: RootState) => state.trips.status === FetchStatus.LOADING);
 
     useEffect(() => {
         dispatch(fetchTrips());
@@ -32,7 +32,7 @@ const TripsScrollMenu: React.FC = () => {
     }));
 
     return (
-        <ScrollMenu links={links} handleChildClick={handleClick} />
+        <ScrollMenu links={links} handleChildClick={handleClick}/>
     );
 };
 

@@ -1,5 +1,5 @@
-# Use the official Node.js 20 image
-FROM node:20 AS build
+# Use the official Node.js 21 image
+FROM node:21 AS build
 
 # Set the working directory
 WORKDIR /app
@@ -17,13 +17,13 @@ COPY . .
 RUN npm run build
 
 # Use a lightweight Node.js image for the production environment
-FROM node:20-alpine
+FROM node:21-alpine
 
 # Set the working directory
 WORKDIR /app
 
 # Copy the build output from the build stage to the production image
-COPY --from=build /app/build ./build
+COPY --from=build /app/dist ./dist
 
 # Expose the port specified in the .env file
 EXPOSE ${APP_PORT}
