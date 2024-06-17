@@ -7,6 +7,7 @@ import {fetchTrucks} from "../redux/TruckStore.ts";
 import axios from 'axios';
 import {fetchTasks} from "../redux/TaskStore.ts";
 import {fetchTrips} from "../redux/TripStore.ts";
+import Constants from "../enums/Constants.ts";
 
 interface TripFormProps {
     isOpen: boolean;
@@ -36,7 +37,7 @@ const TripForm: React.FC<TripFormProps> = ({isOpen, onClose}) => {
             formData.append('truck_id', selectedTruck);
 
             try {
-                const response = await axios.post('http://localhost:8000/trips', formData, {
+                const response = await axios.post(`${Constants.API_URL}/trips`, formData, {
                     headers: {
                         'Accept': 'application/json'
                     }
