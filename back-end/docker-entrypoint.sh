@@ -18,4 +18,4 @@ php bin/console doctrine:migrations:migrate --no-interaction
 php bin/console doctrine:fixtures:load --no-interaction
 
 # Start the PHP built-in web server
-php -S localhost:8000 -t ./public
+php -S 0.0.0.0:8000 -t ./public
