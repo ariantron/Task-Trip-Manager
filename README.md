@@ -27,9 +27,9 @@ You are required to build a simple web application using the Symfony framework a
    - Tasks can only be added to one trip.
 
 4. **Tech Stack**
-   - Backend: Symfony Framework
-   - Frontend: React with TypeScript and Vite
-   - Database: Postgres
+   - Backend: PHP, Symfony Framework
+   - Frontend: TypeScript, React.js Library, Vite Build Tool, Redux Toolkit State Management Library
+   - Database: PostgreSQL
 
 ### Structure
 #### Frontend:
